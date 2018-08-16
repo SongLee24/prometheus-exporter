@@ -1,8 +1,8 @@
-##一、Prometheus中的基本概念
+## 一、Prometheus中的基本概念
 
 Prometheus将所有数据存储为时间序列，这里先来了解一下prometheus中的一些基本概念
 
-###指标名和标签
+### 指标名和标签
 
 每个时间序列都由`指标名`和一组`键值对`（也称为标签）唯一标识。
 
@@ -18,7 +18,7 @@ http_requests_total{host="192.10.0.1", method="POST", handler="/messages"}
 * `host`、`method`、`handler`是三个标签(label)，也就是三个维度；
 * 查询语句可以基于这些标签or维度进行过滤和聚合；
 
-###指标类型
+### 指标类型
 
 Prometheus client库提供四种核心度量标准类型。注意是客户端。Prometheus服务端没有区分类型，将所有数据展平为无类型时间序列。
 
@@ -44,7 +44,7 @@ Histogram主要用于在设定的分布范围内(Buckets)记录大小或者次�
 
 Summary和Histogram类似，都可以统计事件发生的次数或者大小，以及其分布情况。
 
-###作业和实例
+### 作业和实例
 
 在Prometheus中，一个可以拉取数据的端点`IP:Port`叫做一个实例（instance），而具有多个相同类型实例的集合称作一个作业（job）
 ```
@@ -68,7 +68,7 @@ Summary和Histogram类似，都可以统计事件发生的次数或者大小，�
 
 该`up`指标对于监控实例健康状态很有用。
 
-##二、最简单的Exporter
+## 二、最简单的Exporter
 
 当你安装好go的开发环境，并下载好[Prometheus依赖包](https://github.com/prometheus/client_golang/tree/master/prometheus)到vendor以后，就可以编译个最简单的Exporter，代码如下:
 ```go
@@ -90,7 +90,7 @@ func main() {
 
 这段代码仅仅通过http模块指定了一个路径`/metrics`，并将client_golang库中的`promhttp.Handler()`作为处理函数传递进去后，就可以获取指标数据了。这个最简单的 Exporter 内部其实是使用了一个默认的收集器`NewGoCollector`采集当前Go运行时的相关信息，比如go堆栈使用、goroutine数据等等。
 
-##三、Demo Exporter的目录结构
+## 三、Demo Exporter的目录结构
 项目的目录结构如下：
 ```
 prometheus-exporter/
