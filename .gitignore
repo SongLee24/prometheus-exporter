@@ -1,0 +1,9 @@
+*.pid
+*.lock
+*.log
+
+/.project
+/.pydevproject
+/.settings/org.eclipse.core.resources.prefs
+
+.idea/
